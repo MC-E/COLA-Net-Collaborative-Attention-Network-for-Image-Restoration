@@ -4,5 +4,6 @@ Chong Mou, Jian Zhang, Xiaopeng Fan, Hangfan Liu, and Ronggang Wang, "COLA-Net: 
 
 The code is built on [RNAN](https://github.com/yulunzhang/RNAN).
 ## Contents
-[Introduction]
+[Introduction](Introduction)
 [Tasks]
+## Introduction
