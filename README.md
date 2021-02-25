@@ -6,7 +6,8 @@ The code is built on [RNAN](https://github.com/yulunzhang/RNAN).
 ## Contents
 1. [Introduction](#Introduction)
 2. [Tasks](#Tasks)
-3. [Citation](#citation)
+3. [Citation](#Citation)
+4. [Acknowledgements](#Acknowledgements)
 ## Introduction
 In this paper we propose a model dubbed COLA-Net to exploit both local attention and non-local attention to restore image content in areas with complex textures and highly repetitive details, respectively. It is important to note that this combination is learnable and self-adaptive. To be concrete, for local attention operation, we apply local channel-wise attention on different scales to enlarge the size of receptive field of local operation, while for non-local attention operation, we develop a novel and robust patch-wise non-local attention model for constructing long-range dependence between image patches to restore every patch by aggregating useful information (self-similarity) from the whole image.
 ### Proposed COLA-Net
@@ -43,3 +44,5 @@ If you find the code helpful in your resarch or work, please cite the following 
   year={2021}
 }
 ```
+## Acknowledgements
+This code is built on [RNAN (PyTorch)](https://github.com/yulunzhang/RNAN). We thank the authors for sharing their codes of RNAN.
