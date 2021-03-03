@@ -1,5 +1,6 @@
 # Train
 python train.py --save_path=exp --dir_data=DIV2K --lr=2e-4 --mode=E --noiseL=25
+
 python train.py --save_path=exp --dir_data=DIV2K --lr=1e-3 --mode=B --noiseL=25
 
 # Test
