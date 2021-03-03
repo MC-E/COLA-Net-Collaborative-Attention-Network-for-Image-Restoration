@@ -82,20 +82,6 @@ class ContextualAttention_Enhance(nn.Module):
         self.phi = nn.Conv2d(in_channels=self.in_channels, out_channels=self.inter_channels, kernel_size=1, stride=1,
                              padding=0)
     def forward(self, b):
-        """ Contextual attention layer implementation.
-        Contextual attention is first introduced in publication:
-            Generative Image Inpainting with Contextual Attention, Yu et al.
-        Args:
-            f: Input feature to match (foreground).
-            b: Input feature for match (background).
-            mask: Input mask for b, indicating patches not available.
-            ksize: Kernel size for contextual attention.
-            stride: Stride for extracting patches from b.
-            rate: Dilation for matching.
-            softmax_scale: Scaled softmax for attention.
-        Returns:
-            torch.tensor: output
-        """
         # get shapes
 
         kernel = self.ksize
@@ -146,25 +132,10 @@ class ContextualAttention_Enhance(nn.Module):
             score_map = score_map.view(score_map.shape[0],score_map.shape[1],w,h)
             b_s, l_s, h_s, w_s = score_map.shape
 
-            if self.use_topk:
-                yi = score_map.view(l_s, -1)
-                top_k = min(500, yi.shape[1])
-                _, pred = torch.topk(yi, top_k, dim=1)
-                mask = torch.zeros_like(yi)
-                for idx in range(mask.shape[0]):
-                    mask[idx].index_fill_(0, pred[idx], 1)
-                yi = yi * mask
-                yi = F.softmax(yi*self.softmax_scale, dim=1)
-                yi = yi * mask
-            else:
-                yi = score_map.view(b_s, l_s, -1)
-                yi = F.softmax(yi*self.softmax_scale, dim=2).view(l_s, -1)
+            yi = score_map.view(b_s, l_s, -1)
+            yi = F.softmax(yi*self.softmax_scale, dim=2).view(l_s, -1)
             pi = pi.view(h_s * w_s, -1)
-            # print(pi.shape,yi.shape)
-            # exit(0)
             yi = torch.mm(yi, pi)
-            # print(yi.shape,b_s, l_s, c_s, k_s, k_s)
-            # exit(0)
             yi=yi.view(b_s, l_s, c_s, k_s, k_s)[0]
             zi = yi.view(1, l_s, -1).permute(0, 2, 1)
             zi = torch.nn.functional.fold(zi, (raw_int_bs[2], raw_int_bs[3]), (kernel, kernel), padding=paddings[0], stride=self.stride_1)
@@ -215,14 +186,3 @@ class size_selector(nn.Module):
         a = v[:,0].unsqueeze(-1).unsqueeze(-1).unsqueeze(-1)
         b = v[:,1].unsqueeze(-1).unsqueeze(-1).unsqueeze(-1)
         return a,b
-if __name__ =="__main__":
-    net = ContextualAttention_Enhance(in_channels=2,use_multiple_size=True).cuda().double()
-    # input_im = torch.zeros((2,2,64,64)).cuda()
-    # output_im = net(input_im)
-    # print(output_im.shape)
-
-    input_im = torch.randn((2,2,32,32),dtype=torch.double,requires_grad=True).cuda()
-    # output_im = net(input_im)
-    # print(output_im.shape)
-    test = gradcheck(lambda x: net(x), (input_im,),eps=1e-6)
-    print(test)
