@@ -5,6 +5,12 @@ Chong Mou, Jian Zhang, Xiaopeng Fan, Hangfan Liu, and Ronggang Wang, "COLA-Net: 
 [Paper](https://ieeexplore.ieee.org/document/9369906/authors#authors)
 
 The code is built based on [RNAN](https://github.com/yulunzhang/RNAN).
+## Requirements
+- Python 3.6
+- PyTorch == 1.1.0
+- numpy
+- skimage
+- cv2
 ## Contents
 1. [Introduction](#Introduction)
 2. [Tasks](#Tasks)
