@@ -6,8 +6,8 @@ Chong Mou, [Jian Zhang](https://jianzhang.tech/), Xiaopeng Fan, Hangfan Liu, and
 
 [Our Team](http://villa.jianzhang.tech/)
 
-The code is built based on [RNAN](https://github.com/yulunzhang/RNAN).
 ## Requirements
+The code is built based on [RNAN](https://github.com/yulunzhang/RNAN).
 - Python 3.6
 - PyTorch == 1.1.0
 - numpy
