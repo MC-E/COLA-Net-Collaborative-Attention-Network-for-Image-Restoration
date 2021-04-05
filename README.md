@@ -2,7 +2,7 @@
 This repository is for COLA-Net introduced in the following paper:
 Chong Mou, [Jian Zhang](https://jianzhang.tech/), Xiaopeng Fan, Hangfan Liu, and Ronggang Wang, "COLA-Net: Collaborative Attention Network for Image Restoration", (IEEE Transactions on Multimedia 2021)
 
-\[[Paper]\](https://ieeexplore.ieee.org/document/9369906/authors#authors) \[[arxiv]\](https://arxiv.org/abs/2103.05961)
+[\[Paper\]](https://ieeexplore.ieee.org/document/9369906/authors#authors) [\[arxiv\]](https://arxiv.org/abs/2103.05961)
 
 [Our Team](http://villa.jianzhang.tech/)
 
