@@ -4,16 +4,10 @@ python train.py --dir_data=DIV2K --quality=10 --save_path=exp --lr=2e-4 --mode=E
 python train.py --dir_data=DIV2K --quality=10 --save_path=exp --lr=1e-3 --mode=B
 
 Download datasets from the provided links and place them in this directory. Your directory structure should look something like this：
-
+      
 `DIV2K` <br/>
   `├──`DIV2K_HQ <br/>
   `└──`DIV2K_LQ <br/>
-      `└──`Quality factor` <br/>
-      
-`SIDD` <br/>
-  `├──`DIV2K_HQ <br/>
-  `└──`DIV2K_LQ <br/>
-      `├──ValidationNoisyBlocksSrgb.mat` <br/>
       `└──Quality factor`
 
 # Test
