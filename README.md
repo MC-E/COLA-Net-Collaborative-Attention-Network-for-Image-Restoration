@@ -14,7 +14,7 @@ The code is built based on [RNAN](https://github.com/yulunzhang/RNAN).
 - skimage
 - cv2
 
-The training datasets is available at [DIV2K](https://data.vision.ee.ethz.ch/cvl/DIV2K/) and [SIDD](https://www.eecs.yorku.ca/~kamel/sidd/).
+The training datasets are available at [DIV2K](https://data.vision.ee.ethz.ch/cvl/DIV2K/) and [SIDD](https://www.eecs.yorku.ca/~kamel/sidd/).
 ## Contents
 1. [Introduction](#Introduction)
 2. [Tasks](#Tasks)
