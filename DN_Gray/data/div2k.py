@@ -13,6 +13,7 @@ import torch.utils.data as data
 class DIV2K(srdata.SRData):
     def __init__(self, args, name='DIV2K', train=True, benchmark=False):
         data_range = [r.split('-') for r in args.data_range.split('/')]
+        self.noiseL=args.noiseL
         if train:
             data_range = data_range[0]
         else:
@@ -40,4 +41,4 @@ class DIV2K(srdata.SRData):
         if self.train == False:
             self.apath = os.path.join(self.apath,'Val')
         self.dir_hr = os.path.join(self.apath, 'DIV2K_HQ')
-        self.dir_lr = os.path.join(self.apath, 'DIV2K_LQ')
+        self.dir_lr = os.path.join(self.apath, 'DIV2K_LQ',str(self.noiseL))
