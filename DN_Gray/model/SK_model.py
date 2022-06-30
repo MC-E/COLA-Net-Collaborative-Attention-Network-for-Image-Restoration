@@ -51,7 +51,7 @@ class SKConv(nn.Module):
 
     def forward(self, x):
         for i, conv in enumerate(self.convs):
-            fea = conv(x).unsqueeze_(dim=1)
+            fea = conv(x)[:,None]#.unsqueeze_(dim=1)
             if i == 0:
                 feas = fea
             else:
@@ -61,13 +61,13 @@ class SKConv(nn.Module):
         fea_s = fea_U.mean(-1).mean(-1)
         fea_z = self.fc(fea_s)
         for i, fc in enumerate(self.fcs):
-            vector = fc(fea_z).unsqueeze_(dim=1)
+            vector = fc(fea_z)[:,None]#.unsqueeze_(dim=1)
             if i == 0:
                 attention_vectors = vector
             else:
                 attention_vectors = torch.cat([attention_vectors, vector], dim=1)
         attention_vectors = self.softmax(attention_vectors)
-        attention_vectors = attention_vectors.unsqueeze(-1).unsqueeze(-1)
+        attention_vectors = attention_vectors[...,None,None]#.unsqueeze(-1).unsqueeze(-1)
         fea_v = (feas * attention_vectors).sum(dim=1)
         return fea_v
 

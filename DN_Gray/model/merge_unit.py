@@ -15,15 +15,15 @@ class merge_block(nn.Module):
         self.softmax = nn.Softmax(dim=1)
 
     def forward(self, x):
-        out1 = self.SKUnit(x).unsqueeze_(dim=1)
-        out2 = self.CAUnit(x).unsqueeze_(dim=1)
+        out1 = self.SKUnit(x)[:,None]#.unsqueeze_(dim=1)
+        out2 = self.CAUnit(x)[:,None]#.unsqueeze_(dim=1)
         out = torch.cat((out2,out1),dim=1)
         U = torch.sum(out,dim=1)
         attention_vector = U.mean(-1).mean(-1)
         attention_vector = self.fc1(attention_vector)
-        attention_vector_CA = self.att_CA(attention_vector).unsqueeze_(dim=1)
-        attention_vector_SK = self.att_SK(attention_vector).unsqueeze_(dim=1)
+        attention_vector_CA = self.att_CA(attention_vector)[:,None]#.unsqueeze_(dim=1)
+        attention_vector_SK = self.att_SK(attention_vector)[:,None]#.unsqueeze_(dim=1)
         vector = torch.cat((attention_vector_CA,attention_vector_SK),dim=1)
-        vector = self.softmax(vector).unsqueeze(-1).unsqueeze(-1)
+        vector = self.softmax(vector)[...,None,None]#.unsqueeze(-1).unsqueeze(-1)
         out = (out*vector).sum(dim=1)
         return out
