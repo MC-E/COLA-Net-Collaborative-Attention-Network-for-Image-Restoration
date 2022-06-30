@@ -182,6 +182,6 @@ class size_selector(nn.Module):
         b = self.selector_b(o1)
         v = torch.cat((a,b),dim=1)
         v = self.softmax(v)
-        a = v[:,0].unsqueeze(-1).unsqueeze(-1).unsqueeze(-1)
-        b = v[:,1].unsqueeze(-1).unsqueeze(-1).unsqueeze(-1)
+        a = v[:,0][...,None,None,None]#.unsqueeze(-1).unsqueeze(-1).unsqueeze(-1)
+        b = v[:,1][...,None,None,None]#.unsqueeze(-1).unsqueeze(-1).unsqueeze(-1)
         return a,b
